@@ -1,101 +1,108 @@
-import Image from "next/image";
+import React from "react";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+export default function HomePage() {
+	return (
+		<main className="min-h-screen bg-gray-50">
+			{/* En-tête */}
+			<header className="bg-blue-600 text-white py-4 shadow">
+				<div className="container mx-auto px-6 flex justify-between items-center">
+					<h1 className="text-xl font-bold">HyperV Maker</h1>
+					<nav>
+						<ul className="flex space-x-4">
+							<li>
+								<a href="#presentation" className="hover:underline">
+									Présentation
+								</a>
+							</li>
+							<li>
+								<a href="#Objectifs" className="hover:underline">
+									Objectifs
+								</a>
+							</li>
+							<li>
+								<a href="#contact" className="hover:underline">
+									Contact
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+			{/* Section Héros */}
+			<section className="text-center py-20 bg-blue-100">
+				<h2 className="text-4xl font-bold mb-4 text-gray-700">Simplifiez le Déploiement de vos Machines Virtuelles</h2>
+				<p className="text-lg text-gray-600 mb-6">Une solution intuitive pour gérer vos environnements virtuels avec un seul clic.</p>
+				<a href="#contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full text-lg hover:bg-blue-700 transition">
+					Contactez-Nous
+				</a>
+			</section>
+
+			{/* Présentation */}
+			<section id="presentation" className="container mx-auto px-6 py-16">
+				<h3 className="text-3xl font-bold mb-6">Présentation du Projet</h3>
+				<p className="text-lg leading-relaxed text-gray-700">
+					Notre projet HyperV Maker vise à simplifier le déploiement et la gestion de machines virtuelles. Grâce à une interface conviviale et des
+					scripts automatisés, les utilisateurs peuvent configurer et déployer des environnements virtuels en quelques clics.
+				</p>
+			</section>
+
+			{/* Objectifs */}
+			<section id="Objectifs" className="bg-gray-100 py-16">
+				<div className="container mx-auto px-6">
+					<h3 className="text-3xl font-bold mb-6">Objectifs 🎯</h3>
+					<ul className="space-y-6">
+						<li className="bg-white shadow p-6 rounded-lg">
+							<h4 className="text-2xl font-semibold mb-2">1. Automatisation et simplicité d’utilisation</h4>
+							<p className="text-gray-700">
+								L’objectif principal d’HyperV Maker est de rendre la gestion et le déploiement des machines virtuelles accessibles à tous, même aux
+								non-spécialistes. Grâce à une interface intuitive et épurée, les utilisateurs peuvent, en quelques clics, configurer et déployer des
+								environnements virtuels sans se perdre dans des détails techniques complexes. L’automatisation est au cœur du projet : chaque action,
+								qu’il s’agisse de la création d’une VM vierge ou de l’ajout de services comme DHCP ou Active Directory, est simplifiée pour économiser
+								du temps et réduire les erreurs humaines.
+							</p>
+						</li>
+						<li className="bg-white shadow p-6 rounded-lg">
+							<h4 className="text-2xl font-semibold mb-2">2. Flexibilité pour répondre aux besoins variés</h4>
+							<p className="text-gray-700">
+								HyperV Maker ne se limite pas à une solution standardisée : il offre aux utilisateurs la possibilité de personnaliser leurs machines
+								virtuelles selon leurs besoins spécifiques. Cela inclut des configurations matérielles comme la RAM ou les vCPU, ainsi que
+								l’intégration de services essentiels. Cette flexibilité permet d’adresser une large gamme d’utilisateurs, des petites entreprises
+								cherchant une solution rapide aux équipes techniques ayant besoin d’un outil puissant et adaptable.
+							</p>
+						</li>
+						<li className="bg-white shadow p-6 rounded-lg">
+							<h4 className="text-2xl font-semibold mb-2">3. Fiabilité et efficacité opérationnelle</h4>
+							<p className="text-gray-700">
+								En intégrant des technologies modernes (React pour le front-end, API REST pour le backend, et scripts PowerShell ou Python), HyperV
+								Maker garantit une performance robuste et une interopérabilité fluide. L’optimisation des ressources, la gestion des risques, et les
+								tests rigoureux contribuent à offrir une solution fiable, même dans des environnements à forte charge. En éliminant les points de
+								friction traditionnels, HyperV Maker permet aux entreprises de se concentrer sur leurs objectifs stratégiques sans être freinées par
+								des contraintes technologiques.
+							</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			{/* Section Contact */}
+			<section id="contact" className="container mx-auto px-6 py-16">
+				<h3 className="text-3xl font-bold mb-6">Contactez-Nous</h3>
+				<p className="text-lg text-gray-700 mb-6">
+					Pour toute question ou demande de démo, contactez-nous à{" "}
+					<a href="mailto:contact@hypervmaker.com" className="text-blue-600 underline hover:text-blue-800">
+						contact@hypervmaker.com
+					</a>
+					.
+				</p>
+			</section>
+
+			{/* Pied de Page */}
+			<footer className="bg-blue-600 text-white py-6">
+				<div className="container mx-auto text-center">
+					<p>&copy; 2024 HyperV Maker. Tous droits réservés.</p>
+				</div>
+			</footer>
+		</main>
+	);
 }
