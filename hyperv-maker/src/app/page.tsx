@@ -29,7 +29,7 @@ export default function HomePage() {
 				</div>
 			</header>
 
-			{/* Section Héros */}
+			{/* Section Cool */}
 			<section className="text-center py-20 bg-blue-100">
 				<h2 className="text-4xl font-bold mb-4 text-gray-700">Simplifiez le Déploiement de vos Machines Virtuelles</h2>
 				<p className="text-lg text-gray-600 mb-6">Une solution intuitive pour gérer vos environnements virtuels avec un seul clic.</p>
