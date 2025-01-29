@@ -1,41 +1,46 @@
+// src/components/modals/VSwitchModal.tsx
 "use client";
 import React, { useState } from "react";
 import Modal from "@/components/ui/Modal";
+import VSwitchForm from "../forms/VSwitchForm";
 
 interface VSwitchModalProps {
 	isOpen: boolean;
 	onClose: () => void;
+	onSubmit: (data: { name: string }) => Promise<void>;
 }
 
-const VSwitchModal: React.FC<VSwitchModalProps> = ({ isOpen, onClose }) => {
-	const [switchName, setSwitchName] = useState("");
+const VSwitchModal: React.FC<VSwitchModalProps> = ({ isOpen, onClose, onSubmit }) => {
+	const [loading, setLoading] = useState(false);
+	const [message, setMessage] = useState("");
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		// Logique de création de VSwitch
-		console.log("Creating VSwitch:", switchName);
-		onClose();
+	const handleSubmit = async (data: { name: string }) => {
+		setLoading(true);
+		setMessage("");
+
+		try {
+			await onSubmit(data);
+			setMessage(`vSwitch "${data.name}" créé avec succès !`);
+			setTimeout(() => {
+				setMessage("");
+				onClose();
+			}, 2000);
+		} catch (error) {
+			console.error(error);
+			setMessage("Erreur lors de la création du vSwitch");
+		}
+
+		setLoading(false);
 	};
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
-			<h2 className="text-xl font-bold mb-4">Créer un VSwitch</h2>
-			<form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-				<label>
-					<span>Nom du vSwitch</span>
-					<input
-						type="text"
-						className="border border-gray-300 rounded px-2 py-1 w-full mt-1"
-						value={switchName}
-						onChange={(e) => setSwitchName(e.target.value)}
-						required
-					/>
-				</label>
-				{/* Autres champs éventuels */}
-				<button type="submit" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-					Créer
-				</button>
-			</form>
+			<div className="p-6">
+				<h2 className="text-xl font-bold mb-4">Créer un vSwitch</h2>
+				<VSwitchForm onSubmit={handleSubmit} loading={loading} />
+
+				{message && <div className="mt-4 p-2 rounded bg-green-100 text-green-700">{message}</div>}
+			</div>
 		</Modal>
 	);
 };

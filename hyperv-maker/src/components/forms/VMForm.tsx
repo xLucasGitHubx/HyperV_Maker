@@ -18,7 +18,7 @@ const VMForm: React.FC<VMFormProps> = ({ onSubmit, loading = false }) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="flex flex-col space-y-4 bg-white p-6 rounded-lg shadow max-w-md mx-auto">
+		<form onSubmit={handleSubmit} className="flex flex-col space-y-4 bg-white p-6  max-w-md mx-auto">
 			<h2 className="text-xl font-bold">Créer une nouvelle VM</h2>
 
 			{/* Champ Nom de la VM */}
