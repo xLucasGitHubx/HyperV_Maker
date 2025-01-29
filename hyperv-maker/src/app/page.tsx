@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function HomePage() {
 	return (
@@ -10,9 +11,9 @@ export default function HomePage() {
 					<nav>
 						<ul className="flex space-x-4">
 							<li>
-								<a href="#presentation" className="hover:underline">
+								<Link href="/about" className="hover:underline">
 									Présentation
-								</a>
+								</Link>
 							</li>
 							<li>
 								<a href="#Objectifs" className="hover:underline">
