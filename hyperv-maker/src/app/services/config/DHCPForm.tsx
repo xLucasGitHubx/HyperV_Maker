@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import { useServiceConfig } from "@/components/ServiceConfigProvider";
 
-export default function DHCPForm() {
+interface DHCPFormProps {
+	onSuccess: () => void; // ✅ Callback pour afficher le bandeau succès et fermer la modal
+}
+
+export default function DHCPForm({ onSuccess }: DHCPFormProps) {
 	const { config, updateDHCPConfig } = useServiceConfig();
 	const [ipStart, setIpStart] = useState(config.dhcp.ipStart);
 	const [ipEnd, setIpEnd] = useState(config.dhcp.ipEnd);
@@ -10,6 +14,9 @@ export default function DHCPForm() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		updateDHCPConfig({ ipStart, ipEnd });
+
+		// ✅ Déclenche le message de succès et ferme la modal
+		onSuccess();
 	};
 
 	return (

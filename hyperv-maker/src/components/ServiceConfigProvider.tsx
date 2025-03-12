@@ -68,21 +68,21 @@ export default function ServiceConfigProvider({ children }: { children: React.Re
 	const updateDHCPConfig = (data: Partial<DHCPConfig>) => {
 		setConfig((prev) => ({ ...prev, dhcp: { ...prev.dhcp, ...data } }));
 		localStorage.setItem("successMessage", "DHCP configuré avec succès !");
-		router.push("/services");
+		router.push("/dashboard");
 	};
 
 	// Mettre à jour la config AD et rediriger avec notification
 	const updateADConfig = (data: Partial<ADConfig>) => {
 		setConfig((prev) => ({ ...prev, ad: { ...prev.ad, ...data } }));
 		localStorage.setItem("successMessage", "Active Directory configuré avec succès !");
-		router.push("/services");
+		router.push("/dashboard");
 	};
 
 	// Mettre à jour la config DNS et rediriger avec notification
 	const updateDNSConfig = (data: Partial<DNSConfig>) => {
 		setConfig((prev) => ({ ...prev, dns: { ...prev.dns, ...data } }));
 		localStorage.setItem("successMessage", "DNS configuré avec succès !");
-		router.push("/services");
+		router.push("/dashboard");
 	};
 
 	return (

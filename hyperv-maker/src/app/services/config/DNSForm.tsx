@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import { useServiceConfig } from "@/components/ServiceConfigProvider";
 
-export default function DNSForm() {
+interface DNSFormProps {
+	onSuccess: () => void; // ✅ Callback pour afficher le bandeau succès et fermer la modal
+}
+
+export default function DNSForm({ onSuccess }: DNSFormProps) {
 	const { config, updateDNSConfig } = useServiceConfig();
 	const [zoneName, setZoneName] = useState(config.dns.zoneName);
 	const [serverIP, setServerIP] = useState(config.dns.serverIP);
@@ -10,8 +14,10 @@ export default function DNSForm() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		updateDNSConfig({ zoneName, serverIP });
-	};
 
+		// ✅ Déclenche le message de succès et ferme la modal
+		onSuccess();
+	};
 	return (
 		<form onSubmit={handleSubmit} className="bg-white shadow-md p-4 rounded">
 			<label className="block mb-2">

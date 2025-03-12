@@ -1,19 +1,21 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useServiceConfig } from "@/components/ServiceConfigProvider";
 
-export default function ADForm() {
-	const { config, updateADConfig } = useServiceConfig();
-	const [domainName, setDomainName] = useState("");
+interface ADFormProps {
+	onSuccess: () => void; // ✅ Ajout du callback de succès
+}
 
-	// ✅ Attendre que le composant soit monté avant d'utiliser `config`
-	useEffect(() => {
-		setDomainName(config.ad?.domainName || ""); // Évite une erreur d'accès à `config.ad`
-	}, [config.ad]);
+export default function ADForm({ onSuccess }: ADFormProps) {
+	const { config, updateADConfig } = useServiceConfig();
+	const [domainName, setDomainName] = useState(config.ad.domainName);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		updateADConfig({ domainName });
+
+		// ✅ Déclencher le message de succès et fermer la modal
+		onSuccess();
 	};
 
 	return (

@@ -24,7 +24,6 @@ const NavBar: React.FC = () => {
 					{/* Desktop Menu */}
 					<div className="hidden md:flex space-x-6">
 						<NavItem href="/dashboard" label="Dashboard" />
-						{/* <NavItem href="/services" label="Services" /> */}
 					</div>
 
 					{/* Boutons mode sombre et menu mobile */}
@@ -43,8 +42,6 @@ const NavBar: React.FC = () => {
 			{isMenuOpen && (
 				<div className="md:hidden bg-white dark:bg-gray-800 p-4 space-y-2">
 					<NavItem href="/dashboard" label="Dashboard" />
-					<NavItem href="/services" label="Services" />
-					<NavItem href="/vm-config" label="VM Config" />
 				</div>
 			)}
 		</nav>

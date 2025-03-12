@@ -21,7 +21,7 @@ const VMModal: React.FC<VMModalProps> = ({ isOpen, onClose, onSubmit }) => {
 
 		try {
 			await onSubmit(data);
-			setMessage(`VM "${data.name}" créée avec succès !`);
+			setMessage(`VM "${data.name}" créé avec succès !`);
 			// Fermer la modal après un court délai pour laisser le temps au message d'être lu
 			setTimeout(() => {
 				setMessage("");

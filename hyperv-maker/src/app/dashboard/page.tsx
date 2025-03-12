@@ -1,6 +1,6 @@
 // src/app/dashboard/page.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // ============ Composants existants ============
 import VMList from "@/components/VMList";
@@ -25,6 +25,9 @@ export default function MainDashboard() {
 	// === État pour la VM sélectionnée (détails) ===
 	const [selectedVM, setSelectedVM] = useState<VM | null>(null);
 
+	// === État pour le message de succès ===
+	const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
 	// === Liste de VM (exemple) ===
 	const [vms, setVms] = useState<VM[]>([
 		{
@@ -48,6 +51,21 @@ export default function MainDashboard() {
 			storageUsed: 10,
 		},
 	]);
+
+	// ========== Gérer le message de succès ============
+	useEffect(() => {
+		// Vérifie s'il y a un message dans localStorage
+		const message = localStorage.getItem("successMessage");
+		if (message) {
+			setSuccessMessage(message);
+			localStorage.removeItem("successMessage");
+
+			// Cache le message après 3 secondes
+			setTimeout(() => {
+				setSuccessMessage(null);
+			}, 3000);
+		}
+	}, []);
 
 	// ========== Fonctions pour les modals =============
 	const openVMModal = () => setIsVMModalOpen(true);
@@ -83,6 +101,11 @@ export default function MainDashboard() {
 		};
 
 		setVms([...vms, newVM]);
+
+		// ✅ Stocker un message de succès
+		localStorage.setItem("successMessage", "Machine virtuelle créé avec succès !");
+		setSuccessMessage("Machine virtuelle créée avec succès !");
+		setTimeout(() => setSuccessMessage(null), 3000); // Cache après 3 sec
 	};
 
 	// Création d’un VSwitch (depuis VSwitchModal)
@@ -90,10 +113,22 @@ export default function MainDashboard() {
 		setIsVSwitchModalOpen(false);
 		// Ajoutez la logique de création ici (appel API)
 		console.log("Créer VSwitch:", data.name);
+
+		// ✅ Stocker un message de succès
+		localStorage.setItem("successMessage", "VSwitch créé avec succès !");
+		setSuccessMessage("VSwitch créé avec succès !");
+		setTimeout(() => setSuccessMessage(null), 3000); // Cache après 3 sec
 	};
 
 	return (
 		<div className="p-6 mt-20">
+			{/* ✅ Bandeau de succès */}
+			{successMessage && (
+				<div className="fixed top-12 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white text-center py-2 px-6 rounded-lg shadow-lg">
+					{successMessage}
+				</div>
+			)}
+
 			{/* ==================== Layout 3 colonnes ==================== */}
 			<div className="grid grid-cols-12 gap-4">
 				{/* 1) Colonne 1 : VM-LIST */}
@@ -119,14 +154,6 @@ export default function MainDashboard() {
 					<div className="bg-white p-4 rounded shadow-sm">
 						<h2 className="text-lg font-bold mb-4 text-center">VSWITCH-LIST</h2>
 						<VSwitchList />
-						{/* Bouton pour ouvrir la modal VSwitch */}
-						<VMConfigButton
-							title="Add VSwitch"
-							helpText="Créer un nouveau switch réseau virtuel."
-							buttonColor="bg-green-500"
-							hoverButtonColor="hover:bg-green-600"
-							onClick={openVSwitchModal}
-						/>
 					</div>
 				</div>
 
@@ -136,14 +163,10 @@ export default function MainDashboard() {
 					<ServiceList />
 				</div>
 			</div>
+
 			{/* ==================== Modals ==================== */}
-			{/* Modal pour créer une VM */}
 			<VMModal isOpen={isVMModalOpen} onClose={closeVMModal} onSubmit={createVM} />
-
-			{/* Modal pour créer un VSwitch */}
 			<VSwitchModal isOpen={isVSwitchModalOpen} onClose={closeVSwitchModal} onSubmit={createVSwitch} />
-
-			{/* Modal pour les détails de la VM */}
 			<VMDetailsModal isOpen={isDetailsModalOpen} onClose={closeDetailsModal} vm={selectedVM} />
 		</div>
 	);
