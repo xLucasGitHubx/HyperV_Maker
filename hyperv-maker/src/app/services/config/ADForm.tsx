@@ -1,10 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useServiceConfig } from "@/components/ServiceConfigProvider";
 
 export default function ADForm() {
 	const { config, updateADConfig } = useServiceConfig();
-	const [domainName, setDomainName] = useState(config.ad.domainName);
+	const [domainName, setDomainName] = useState("");
+
+	// ✅ Attendre que le composant soit monté avant d'utiliser `config`
+	useEffect(() => {
+		setDomainName(config.ad?.domainName || ""); // Évite une erreur d'accès à `config.ad`
+	}, [config.ad]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();

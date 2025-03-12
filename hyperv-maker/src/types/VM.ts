@@ -6,4 +6,6 @@ export interface VM {
 	ramUsed: number; // en Mo
 	storage: number; // en Go
 	storageUsed: number; // en Go
+	cpu: number; // en nombre de coeurs
+	cpuUsed: number; // en nombre de coeurs
 }

@@ -21,7 +21,7 @@ const VMConfigButton: React.FC<VMConfigButtonProps> = ({
 }) => {
 	return (
 		<div
-			className="flex flex-col items-center bg-white shadow-md rounded-xl p-4 hover:scale-105 transition-transform w-full max-w-sm"
+			className="bg-white shadow-md rounded-lg p-4 cursor-pointer mt-4 hover:bg-gray-100 transition-colors flex flex-col items-center justify-center"
 			role="region"
 			aria-label="Configuration VM">
 			<button

@@ -1,3 +1,5 @@
+// a supprimer la page n'est pas utiliser dans le projet
+
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";

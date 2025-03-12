@@ -16,7 +16,7 @@ interface VMCardProps {
 
 const VMCard: React.FC<VMCardProps> = ({ vm, onClick }) => {
 	return (
-		<div className="bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => onClick(vm)}>
+		<div className="bg-white shadow-md rounded-lg p-4 cursor-pointer mt-4 hover:bg-gray-100 transition-colors" onClick={() => onClick(vm)}>
 			<h3 className="text-lg font-semibold">{vm.name}</h3>
 			<p className="text-sm text-gray-600">RAM: {vm.ram} Mo</p>
 			<p className="text-sm text-gray-600">Stockage: {vm.storage} Go</p>

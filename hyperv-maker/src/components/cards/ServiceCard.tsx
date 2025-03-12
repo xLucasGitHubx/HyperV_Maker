@@ -9,7 +9,7 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ serviceName, description, onConfigure }) => {
 	return (
-		<div className="bg-white rounded-lg shadow p-4">
+		<div className="bg-white shadow-md rounded-lg p-4 cursor-pointer mt-4 hover:bg-gray-100 transition-colors">
 			<h2 className="font-bold text-lg">{serviceName}</h2>
 			<p className="text-sm text-gray-600 mt-1">{description}</p>
 			{onConfigure && (

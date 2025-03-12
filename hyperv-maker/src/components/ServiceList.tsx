@@ -32,23 +32,22 @@ const ServiceList: React.FC = () => {
 	};
 
 	return (
-		<div className="p-6">
-			<h1 className="text-2xl font-bold mb-4">Services</h1>
+		<>
+			{/* Liste des services */}
 
-			{/* Grid des services */}
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+			<div className="">
 				{servicesData.map((srv) => (
 					<ServiceCard key={srv.id} serviceName={srv.name} description={srv.description} onConfigure={() => handleConfigure(srv.id)} />
 				))}
 			</div>
 
-			{/* Bouton Télécharger en bas des services */}
-			<div className="flex justify-center mt-6">
+			{/* Bouton Télécharger */}
+			<div className="bg-white shadow-md rounded-lg p-4 cursor-pointer mt-4 hover:bg-gray-100 transition-colors flex flex-col items-center justify-center">
 				<button onClick={downloadConfig} className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
 					Télécharger la configuration
 				</button>
 			</div>
-		</div>
+		</>
 	);
 };
 

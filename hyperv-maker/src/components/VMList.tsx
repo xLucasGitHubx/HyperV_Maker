@@ -11,7 +11,7 @@ interface VMListProps {
 
 const VMList: React.FC<VMListProps> = ({ vms, onVMClick }) => {
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div>
 			{vms.map((vm) => (
 				<VMCard key={vm.id} vm={vm} onClick={onVMClick} />
 			))}
