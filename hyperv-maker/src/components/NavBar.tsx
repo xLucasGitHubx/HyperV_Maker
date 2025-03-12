@@ -1,25 +1,15 @@
-// src/components/ui/NavBar.tsx
+// src/components/NavBar.tsx
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { ThemeContext } from "@/components/ThemeProvider";
 
 const NavBar: React.FC = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [isDarkMode, setIsDarkMode] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			const theme = localStorage.getItem("theme");
-			setIsDarkMode(theme === "dark");
-		}
-	}, []);
-
-	useEffect(() => {
-		document.documentElement.classList.toggle("dark", isDarkMode);
-		localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-	}, [isDarkMode]);
-
+	// 1️⃣ On récupère `theme` et `toggleTheme` depuis le contexte
+	const { theme, toggleTheme } = useContext(ThemeContext);
 	return (
 		<nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-50 top-0">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,14 +32,9 @@ const NavBar: React.FC = () => {
 					<div className="flex items-center space-x-4">
 						{/* Bouton mode sombre */}
 						<button
-							onClick={() => setIsDarkMode(!isDarkMode)}
+							onClick={toggleTheme}
 							className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-							{isDarkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-800 dark:text-gray-200" />}
-						</button>
-
-						{/* Bouton Menu Burger */}
-						<button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2">
-							{isMenuOpen ? <X className="w-6 h-6 text-gray-800 dark:text-white" /> : <Menu className="w-6 h-6 text-gray-800 dark:text-white" />}
+							{theme === "dark" ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-800 dark:text-gray-200" />}
 						</button>
 					</div>
 				</div>

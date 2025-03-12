@@ -1,7 +1,9 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import ServiceConfigProvider from "@/components/ServiceConfigProvider"; // <-- Import du Provider
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -16,19 +18,18 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
 	title: "HyperV Maker",
-	description:
-		"HyperV Maker : Simplifiez la gestion et le déploiement de vos machines virtuelles avec une interface intuitive et un clic, pour un gain de temps et d'efficacité inégalé",
+	description: "HyperV Maker : Simplifiez la gestion et le déploiement ...",
 };
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="fr">
-			<NavBar />
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 dark:bg-gray-900`}>
+				<ServiceConfigProvider>
+					<NavBar />
+					{children}
+				</ServiceConfigProvider>
+			</body>
 		</html>
 	);
 }
