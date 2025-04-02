@@ -1,3 +1,7 @@
+#looping
+*.lo1
+*.loo
+
 # Logs
 logs
 *.log
